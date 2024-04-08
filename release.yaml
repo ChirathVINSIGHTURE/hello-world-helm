@@ -1,0 +1,22 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: hello-world
+  namespace: test-namespace
+  labels:
+    organizationId: org123
+    projectId: proj123
+    environmentId: env123
+    applicaitonId: app123
+spec:
+  interval: 5m0s
+  chart:
+    spec:
+      chart: hello-world
+      sourceRef:
+        kind: GitRepository
+        name: hello-world
+        namespace: test-namespace
+  values:
+    key1: value1
+    key2: value2

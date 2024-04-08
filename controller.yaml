@@ -1,0 +1,12 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: hello-world
+  namespace: test-namespace
+spec:
+  interval: 5m0s
+  url: https://github.com/ChirathVINSIGHTURE/hello-world-helm
+  ref:
+    branch: main
+  secretRef:
+    name: hello-world
