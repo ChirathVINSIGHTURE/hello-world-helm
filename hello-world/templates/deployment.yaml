@@ -1,22 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: { { include "hello-world.fullname" . } }
-  labels: { { - include "hello-world.labels" . | nindent 4 } }
+  name: {{ include "hello-world.fullname" . }}
+  labels:
+    {{- include "hello-world.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: { { include "hello-world.name" . } }
-      app.kubernetes.io/instance: { { .Release.Name } }
+      app.kubernetes.io/name: {{ include "hello-world.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: { { include "hello-world.name" . } }
-        app.kubernetes.io/instance: { { .Release.Name } }
+        app.kubernetes.io/name: {{ include "hello-world.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
-        - name: hello-world
-          image: "nginxdemos/hello:plain-text"
-          ports:
-            - containerPort: 80
+      - name: hello-world
+        image: "nginxdemos/hello:plain-text"
+        ports:
+        - containerPort: 80
